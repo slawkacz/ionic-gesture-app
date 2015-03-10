@@ -1,1 +1,3 @@
 www/lib
+platforms/^.*
+plugins/*
