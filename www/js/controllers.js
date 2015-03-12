@@ -1,1 +1,1 @@
-angular.module('starter.controllers',[]);
+angular.module('gestureApp.controllers',[]);
