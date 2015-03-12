@@ -1,1 +1,10 @@
 /* Empty. Add your own CSS if you like */
+.scroll {
+	height:100%;
+}
+.photo-wrapper {
+	background:#000 no-repeat center center;
+	background-size: contain;
+	height:100%;
+	width:100%;
+}

@@ -26,7 +26,7 @@
   <body ng-app="gestureApp">
     <ion-pane>
       <ion-content ng-controller="PhotosCtrl">
-        <img src="{{photo.image.src}}" />
+        <div class="photo-wrapper" style="background-image:url({{photo.image.src}})"></div>
       </ion-content>
     </ion-pane>
   </body>
