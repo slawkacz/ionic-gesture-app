@@ -19,4 +19,6 @@ angular.module('gestureApp').factory('httpInterceptor', function ($q, $rootScope
                 return $q.reject(response);
             }
         };
-    });
+    }).config(function ($httpProvider) {
+        $httpProvider.interceptors.push('httpInterceptor');
+    })
