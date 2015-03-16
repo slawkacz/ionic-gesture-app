@@ -19,7 +19,8 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
     return {
         setUnrated: function(Images, offset) {
             $localstorage.setObject('unratedPhotos', Images);
-            $localstorage.set('lastOffset', offset);
+            var lastOffset = parseInt($localstorage.get('lastOffset', 0));
+            $localstorage.set('lastOffset', lastOffset + offset);
         },
         getUnrated: function() {
             return $localstorage.getObject('unratedPhotos');
@@ -47,7 +48,6 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
         var deffered = $q.defer();
         var unRatedPhotos = Storage.getUnrated();
         if (unRatedPhotos.length) {
-            console.log(unRatedPhotos);
             deffered.resolve(unRatedPhotos)
         } else {
             var lastOffset = Storage.getLastOffset();
@@ -58,21 +58,21 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
     var fetchFromServer = function(offset) {
         var deffered = $q.defer();
         $http.get(API_URL + '&kimlimit=5&kimoffset=' + offset).then(function(res) {
-            Storage.setUnrated(res.data.results.Images, res.data.results.Images.length)
-            deffered.resolve(res.data.results.Images);
+            Storage.setUnrated(res.data.results.Images, res.data.results.Images.length);
+            return deffered.resolve(res.data.results.Images);
         }, deffered.reject);
         return deffered.promise;
     };
     return {
         getPhotos: function() {
             var deffered = $q.defer();
-            getFromStorage().then(deffered.resolve, fetchFromServer);
+            getFromStorage().then(deffered.resolve, fetchFromServer).then(deffered.resolve);
             return deffered.promise;
         },
         rate: function(imgSrc, vote) {
-           var deffered = $q.defer();
-           deffered.resolve(Storage.rateImage(imgSrc, vote));
-           return deffered.promise;
+            var deffered = $q.defer();
+            deffered.resolve(Storage.rateImage(imgSrc, vote));
+            return deffered.promise;
         },
     }
 });
