@@ -34,6 +34,7 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
         var deffered = $q.defer();
         var unRatedPhotos = Storage.getUnrated();
         if (Object.keys(unRatedPhotos).length) {
+            console.log(unRatedPhotos);
             deffered.resolve(unRatedPhotos)
         } else {
             var lastOffset = Storage.getLastOffset();
@@ -54,6 +55,7 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
             var deffered = $q.defer();
             getFromStorage().then(deffered.resolve, fetchFromServer);
             return deffered.promise;
-        }
+        },
+        rate: function(image, vote) {},
     }
 });
