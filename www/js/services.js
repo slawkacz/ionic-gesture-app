@@ -39,6 +39,7 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
                 vote: vote
             });
             $localstorage.setObject('ratedPhotos', rated);
+            return true;
         }
     }
 }).factory('Photos', function($http, API_URL, Storage, $q) {
@@ -69,7 +70,9 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
             return deffered.promise;
         },
         rate: function(imgSrc, vote) {
-            Storage.rateImage(imgSrc, vote);
+           var deffered = $q.defer();
+           deffered.resolve(Storage.rateImage(imgSrc, vote));
+           return deffered.promise;
         },
     }
 });
