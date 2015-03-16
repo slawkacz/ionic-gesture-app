@@ -5,10 +5,10 @@ angular.module('gestureApp.controllers', []).controller('PhotosCtrl', function(P
         $scope.photos = images;
         $scope.photo = $scope.photos[0];
     });
-    $scope.onSwipeLeft = function(){
-    	console.log('left')
+    $scope.onSwipeUp = function() {
+        Photos.rate($scope.photo.image.src, 1);
     };
-    $scope.onSwipeRight = function(){
-    	console.log('right')
+    $scope.onSwipeDown = function() {
+        Photos.rate($scope.photo.image.src, -1);
     };
 });
