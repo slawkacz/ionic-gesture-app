@@ -1,4 +1,4 @@
-angular.module('gestureApp.controllers', []).controller('PhotosCtrl', function(Photos, $scope, $cordovaToast,$q) {
+angular.module('gestureApp.controllers', []).controller('PhotosCtrl', function(Photos, $scope, $cordovaToast, $cordovaVibration, $q) {
     $scope.photos = [];
     $scope.photo;
     var setPhotoOnStage = function() {
@@ -11,7 +11,8 @@ angular.module('gestureApp.controllers', []).controller('PhotosCtrl', function(P
         return defer.promise;
     };
     var throwToast = function(rate) {
-        $cordovaToast.show('You added '+rate, 'short', 'center').then(function(success) {
+        $cordovaVibration.vibrate(100);
+        $cordovaToast.show('You added ' + rate, 'short', 'top').then(function(success) {
             console.log('success')
             // success
         }, function(error) {
@@ -20,11 +21,10 @@ angular.module('gestureApp.controllers', []).controller('PhotosCtrl', function(P
         });
     }
     $scope.onSwipeUp = function() {
-        Photos.rate($scope.photo.image.src, 1).then(setPhotoOnStage).then(throwToast.bind(this,"plus"));
+        Photos.rate($scope.photo.image.src, 1).then(setPhotoOnStage).then(throwToast.bind(this, "plus"));
     };
     $scope.onSwipeDown = function() {
-        Photos.rate($scope.photo.image.src, -1).then(setPhotoOnStage).then(throwToast.bind(this,"minus"));
+        Photos.rate($scope.photo.image.src, -1).then(setPhotoOnStage).then(throwToast.bind(this, "minus"));
     };
     setPhotoOnStage();
-
 });
