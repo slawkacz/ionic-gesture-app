@@ -7,7 +7,7 @@
         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-                            <link href="css/ionic.app.css" rel="stylesheet">
+                                            <link href="css/ionic.app.css" rel="stylesheet">
         -->
         <!-- ionic/angularjs js -->
         <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -21,25 +21,33 @@
         <script src="js/interceptors.js"></script>
     </head>
     <body  ng-controller="MainController">
-        <ion-side-menus>
-        <ion-side-menu-content>
-        <ion-pane>
-        <ion-content class="content" ng-controller="PhotosCtrl" scroll="false">
-        <ion-spinner class="spiner" icon="android" ng-show="loading"></ion-spinner>
-        <div ng-hide="loading"
-            on-swipe-up="onSwipeUp()"
-            on-swipe-down="onSwipeDown()"
-            on-swipe-left="onSwipeLeft()"
-            class="photo-wrapper"
-            style="background-image:url({{photo.image.src}})">
-        </div>
-        </ion-content>
-        </ion-pane>
-        </ion-side-menu-content>
-        <ion-side-menu side="left">
-        Left Menu!
-        <ion-side-menu>
-        </ion-side-menus>
+    <ion-pane>
+        <ion-tabs class="tabs-icon-only">
+          <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+          
+            <ion-content class="content" scroll="false" ng-controller="PhotosCtrl">
+            <ion-spinner class="spiner" icon="android" ng-show="loading"></ion-spinner>
+            <div ng-hide="loading"
+                on-swipe-up="onSwipeUp()"
+                on-swipe-down="onSwipeDown()"
 
+                class="photo-wrapper"
+                style="background-image:url({{photo.image.src}})">
+            </div>
+            </ion-content>
+          
+          </ion-tab>
+
+          <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+       
+            <ion-content>
+            <h2>Using the app</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis architecto hic officia quasi excepturi sequi deleniti maiores consectetur veritatis sint?</p>
+            </ion-content>
+           
+          </ion-tab>
+
+        </ion-tabs>
+         </ion-pane>
     </body>
 </html>
