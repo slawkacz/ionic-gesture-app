@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.SpinnerDialog\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -53,6 +57,9 @@
             "PACKAGE_NAME": "com.ionicframework.gestureapp988567"
         },
         "org.apache.cordova.vibration": {
+            "PACKAGE_NAME": "com.ionicframework.gestureapp988567"
+        },
+        "hu.dpal.phonegap.plugins.SpinnerDialog": {
             "PACKAGE_NAME": "com.ionicframework.gestureapp988567"
         }
     },

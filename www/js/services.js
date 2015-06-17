@@ -58,8 +58,8 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
     var fetchFromServer = function(offset) {
         var deffered = $q.defer();
         $http.get(API_URL + '&kimlimit=5&kimoffset=' + offset).then(function(res) {
-            Storage.setUnrated(res.data.results.Images, res.data.results.Images.length);
-            return deffered.resolve(res.data.results.Images);
+            Storage.setUnrated(res.data.results.collection1, res.data.results.collection1.length);
+            return deffered.resolve(res.data.results.collection1);
         }, deffered.reject);
         return deffered.promise;
     };

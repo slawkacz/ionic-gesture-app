@@ -24,7 +24,7 @@ angular.module('gestureApp').factory('httpInterceptor', function($q, $rootScope,
 }).run(function($rootScope, $ionicLoading) {
     $rootScope.$on('loading:show', function() {
         $ionicLoading.show({
-            template: 'Loading...'
+            template: '<ion-spinner icon="android"></ion-spinner>'
         })
     })
     $rootScope.$on('loading:hide', function() {

@@ -22,8 +22,9 @@
     </head>
     <body ng-app="gestureApp">
         <ion-pane>
-        <ion-content ng-controller="PhotosCtrl" scroll="false">
-          <div 
+        <ion-content class="content" ng-controller="PhotosCtrl" scroll="false">
+          <ion-spinner class="spiner" icon="android" ng-show="loading"></ion-spinner>
+          <div ng-hide="loading"
               on-swipe-up="onSwipeUp()" 
               on-swipe-down="onSwipeDown()" 
               class="photo-wrapper" 
