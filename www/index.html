@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="gestureApp">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -7,7 +7,7 @@
         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-            <link href="css/ionic.app.css" rel="stylesheet">
+                            <link href="css/ionic.app.css" rel="stylesheet">
         -->
         <!-- ionic/angularjs js -->
         <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -20,17 +20,26 @@
         <script src="js/services.js"></script>
         <script src="js/interceptors.js"></script>
     </head>
-    <body ng-app="gestureApp">
+    <body  ng-controller="MainController">
+        <ion-side-menus>
+        <ion-side-menu-content>
         <ion-pane>
         <ion-content class="content" ng-controller="PhotosCtrl" scroll="false">
-          <ion-spinner class="spiner" icon="android" ng-show="loading"></ion-spinner>
-          <div ng-hide="loading"
-              on-swipe-up="onSwipeUp()" 
-              on-swipe-down="onSwipeDown()" 
-              class="photo-wrapper" 
-              style="background-image:url({{photo.image.src}})">
-          </div>
+        <ion-spinner class="spiner" icon="android" ng-show="loading"></ion-spinner>
+        <div ng-hide="loading"
+            on-swipe-up="onSwipeUp()"
+            on-swipe-down="onSwipeDown()"
+            on-swipe-left="onSwipeLeft()"
+            class="photo-wrapper"
+            style="background-image:url({{photo.image.src}})">
+        </div>
         </ion-content>
         </ion-pane>
+        </ion-side-menu-content>
+        <ion-side-menu side="left">
+        Left Menu!
+        <ion-side-menu>
+        </ion-side-menus>
+
     </body>
 </html>

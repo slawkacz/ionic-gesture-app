@@ -1,4 +1,4 @@
-angular.module('gestureApp.controllers', []).controller('PhotosCtrl', function(Photos, $scope, $ionicLoading, $cordovaToast, $cordovaVibration, $q) {
+angular.module('gestureApp.controllers', []).controller('PhotosCtrl', function(Photos, $scope, $ionicLoading, $cordovaToast, $cordovaVibration, $q, $ionicSideMenuDelegate) {
     $scope.photos = [];
     $scope.photo;
     var setPhotoOnStage = function() {
@@ -22,13 +22,14 @@ angular.module('gestureApp.controllers', []).controller('PhotosCtrl', function(P
     var throwToast = function(rate) {
         $cordovaVibration.vibrate(100);
         $cordovaToast.show('You added ' + rate, 'short', 'top').then(function(success) {
-            console.log('success')
+            // console.log('success')
             // success
         }, function(error) {
-            console.log('success')
+            // console.log('error')
             // error
         });
     }
+   
     $scope.onSwipeUp = function() {
         Photos.rate($scope.photo.image.src, 1).then(throwToast.bind(this, "plus")).then(setPhotoOnStage).then(setPhotoOnStage);
     };
@@ -36,4 +37,12 @@ angular.module('gestureApp.controllers', []).controller('PhotosCtrl', function(P
         Photos.rate($scope.photo.image.src, -1).then(throwToast.bind(this, "minus")).then(setPhotoOnStage);
     };
     setPhotoOnStage();
+}).controller('MainController',function MainCtrl($scope, $ionicSideMenuDelegate) {
+     $scope.onSwipeLeft = function() {
+        console.log('sdfasad')
+        $ionicSideMenuDelegate.toggleLeft();
+    }
+  // $scope.toggleLeftSideMenu = function() {
+  //   $ionicSideMenuDelegate.toggleLeft();
+  // };
 });
