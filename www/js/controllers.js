@@ -28,19 +28,16 @@ angular.module('gestureApp.controllers', []).controller('MainController', functi
     };
     var throwToast = function(rate) {
         $cordovaVibration.vibrate(100);
-        $cordovaToast.show('You added ' + rate, 'short', 'top').then(function(success) {
-            // console.log('success')
-            // success
-        }, function(error) {
-            // console.log('error')
-            // error
-        });
+        var msg = 'You like it! Cool!';
+        if(!rate)
+            msg = 'That\'s wierd! I don\t like it!';
+        $cordovaToast.show(msg, 'short', 'top');
     }
     $scope.onSwipeUp = function() {
-        Photos.rate($scope.photo.image.src, 1).then(throwToast.bind(this, "plus")).then(setPhotoOnStage).then(setPhotoOnStage);
+        Photos.rate($scope.photo.image.src, 1).then(throwToast.bind(this, true)).then(setPhotoOnStage).then(setPhotoOnStage);
     };
     $scope.onSwipeDown = function() {
-        Photos.rate($scope.photo.image.src, -1).then(throwToast.bind(this, "minus")).then(setPhotoOnStage);
+        Photos.rate($scope.photo.image.src, -1).then(throwToast.bind(this, false)).then(setPhotoOnStage);
     };
     setPhotoOnStage();
 }).controller('RatedCtrl',function(Photos,$scope){

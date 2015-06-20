@@ -1,0 +1,12 @@
+<ion-view view-title="Photos">
+      <ion-content class="content" scroll="false" ng-controller="PhotosCtrl">
+            <ion-spinner class="spiner" icon="android" ng-show="loading"></ion-spinner>
+            <div ng-hide="loading"
+                on-swipe-up="onSwipeUp()"
+                on-swipe-down="onSwipeDown()"
+
+                class="photo-wrapper"
+                style="background-image:url({{photo.image.src}})">
+            </div>
+            </ion-content>
+</ion-view>
