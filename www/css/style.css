@@ -1,18 +1,29 @@
-
 .scroll {
     height: 100%;
 }
+
 .content {
-	background: #000;
+    background: #000;
 }
+
 .photo-wrapper {
     background: #000 no-repeat center center;
     background-size: contain;
     height: 100%;
     width: 100%;
 }
+
 .spiner {
-	top:50%;
-	left:50%;
-	position: fixed;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+}
+
+.rate-icon {
+    font-size: 200px;
+    color: #fff;
+}
+
+.rated-photo {
+    text-align: center;
 }

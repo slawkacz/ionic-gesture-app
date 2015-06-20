@@ -1,4 +1,4 @@
-angular.module('gestureApp.controllers', []).controller('MainController', function ($scope, $ionicSideMenuDelegate) {
+angular.module('gestureApp.controllers', []).controller('MainController', function($scope, $ionicSideMenuDelegate) {
     $scope.showMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
     }
@@ -13,7 +13,7 @@ angular.module('gestureApp.controllers', []).controller('MainController', functi
         Photos.getPhotos().then(function(images) {
             $ionicLoading.show({
                 template: '<ion-spinner icon="android"></ion-spinner>'
-            })
+            });
             var img = new Image();
             img.onload = function() {
                 $ionicLoading.hide();
@@ -29,17 +29,23 @@ angular.module('gestureApp.controllers', []).controller('MainController', functi
     var throwToast = function(rate) {
         $cordovaVibration.vibrate(100);
         var msg = 'You like it! Cool!';
-        if(!rate)
-            msg = 'That\'s wierd! I don\t like it!';
+        if (!rate) msg = 'That\'s wierd! I don\t like it!';
         $cordovaToast.show(msg, 'short', 'top');
     }
     $scope.onSwipeUp = function() {
-        Photos.rate($scope.photo.image.src, 1).then(throwToast.bind(this, true)).then(setPhotoOnStage).then(setPhotoOnStage);
+        Photos.rate($scope.photo.image.src, 1).then(throwToast.bind(this, true)).then(setPhotoOnStage);
     };
     $scope.onSwipeDown = function() {
         Photos.rate($scope.photo.image.src, -1).then(throwToast.bind(this, false)).then(setPhotoOnStage);
     };
     setPhotoOnStage();
-}).controller('RatedCtrl',function(Photos,$scope){
-    $scope.test = "dasdas";
+}).controller('RatedCtrl', function(Photos, $ionicLoading,$scope) {
+    $ionicLoading.show({
+        template: '<ion-spinner icon="android"></ion-spinner>'
+    });
+    $scope.photos = [];
+    Photos.getRated().then(function(images) {
+        $scope.photos = images;
+        $ionicLoading.hide();
+    });
 });

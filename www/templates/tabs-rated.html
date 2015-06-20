@@ -1,9 +1,12 @@
 <ion-view view-title="Rated">
   <ion-content>
-    <ion-list>
-    <ion-toggle>
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+	  <div collection-repeat="photo in photos" item-width="100%"
+	    item-height="50%" >
+	    <div class="card">
+		  <div class="rated-photo item item-text-wrap" style="background-image:url({{photo.image}})">
+		     <i class="rate-icon icon {{(photo.vote>0? 'ion-heart' : 'ion-heart-broken')}}"></i>
+		  </div>
+		</div>
+    </div>
   </ion-content>
 </ion-view>

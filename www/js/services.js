@@ -25,6 +25,9 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
         getUnrated: function() {
             return $localstorage.getObject('unratedPhotos');
         },
+        getRated: function() {
+            return $localstorage.getObject('ratedPhotos');
+        },
         getLastOffset: function() {
             return $localstorage.get('lastOffset') || 0
         },
@@ -63,12 +66,23 @@ angular.module('gestureApp.services', []).factory('$localstorage', ['$window',
         }, deffered.reject);
         return deffered.promise;
     };
+    var getRated = function(){
+        var deffered = $q.defer();
+        var ratedPhotos = Storage.getRated();
+        if (ratedPhotos.length) {
+            deffered.resolve(ratedPhotos)
+        } else {
+            deffered.reject('No photos')
+        }
+        return deffered.promise;
+    };
     return {
         getPhotos: function() {
             var deffered = $q.defer();
             getFromStorage().then(deffered.resolve, fetchFromServer).then(deffered.resolve);
             return deffered.promise;
         },
+        getRated: getRated,
         rate: function(imgSrc, vote) {
             var deffered = $q.defer();
             deffered.resolve(Storage.rateImage(imgSrc, vote));
