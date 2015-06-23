@@ -1,5 +1,6 @@
 <ion-view view-title="Rated">
   <ion-content>
+  	<div  ng-if="photos.length">
 	  <div collection-repeat="photo in photos" item-width="100%"
 	    item-height="50%" >
 	    <div class="card">
@@ -8,5 +9,7 @@
 		  </div>
 		</div>
     </div>
+    </div>
+    <div ng-if="!photos.length">You have to rate some photos first!</div>
   </ion-content>
 </ion-view>

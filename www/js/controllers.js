@@ -39,13 +39,16 @@ angular.module('gestureApp.controllers', []).controller('MainController', functi
         Photos.rate($scope.photo.image.src, -1).then(throwToast.bind(this, false)).then(setPhotoOnStage);
     };
     setPhotoOnStage();
-}).controller('RatedCtrl', function(Photos, $ionicLoading,$scope) {
+}).controller('RatedCtrl', function(Photos, $ionicLoading, $scope) {
+   console.log('herer')
     $ionicLoading.show({
         template: '<ion-spinner icon="android"></ion-spinner>'
     });
     $scope.photos = [];
     Photos.getRated().then(function(images) {
         $scope.photos = images;
+        $ionicLoading.hide();
+    }).catch(function(e){
         $ionicLoading.hide();
     });
 });
