@@ -51,4 +51,6 @@ angular.module('gestureApp', ['ionic', 'gestureApp.services', 'gestureApp.contro
         });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/photos');
+}).config(function($ionicConfigProvider) {
+  $ionicConfigProvider.views.maxCache(0);
 });
